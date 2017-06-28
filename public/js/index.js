@@ -1,5 +1,3 @@
-// When the user clicks on the button, scroll to the top of the document
-
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
