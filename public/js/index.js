@@ -4,7 +4,7 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function checkIfVisible(el, cb) {
+function checkIfVisible(el, funcIfTrue, funcIfFalse) {
 $(window).scroll(function() {
     var top_of_element = el.offset().top;
     var bottom_of_element = el.offset().top + el.outerHeight();
@@ -12,11 +12,23 @@ $(window).scroll(function() {
     var top_of_screen = $(window).scrollTop();
 
     if((bottom_of_screen > top_of_element) && (top_of_screen < bottom_of_element)){
-      console.log(true);
-      cb();
+      funcIfTrue();
     }
-    console.log(false);
+    else {
+      funcIfFalse();
+    }
 });
+}
+
+function hideThurstanDesktop() {
+$('.desktop.thurstan rect, .desktop.thurstan polygon, .desktop.thurstan path:not(.exception-1, .exception-2, .exception-3)').each(function() {
+  var x = getRandomInt(-900, -700);
+    var y = getRandomInt(-500, 300);
+    $(this).css({
+      transform: 'translate(' + x + 'px,' + y + 'px)',
+    })
+})
+$('.desktop.thurstan path.exception-1, .desktop.thurstan path.exception-2, .desktop.thurstan path.exception-3').addClass('hiding');
 }
 
 function showThurstanDesktop(){
@@ -122,15 +134,9 @@ jQuery(document).ready(function() {
     });
   }
 
-$('.desktop.thurstan rect, .desktop.thurstan polygon, .desktop.thurstan path:not(.exception-1, .exception-2, .exception-3)').each(function() {
-  var x = getRandomInt(-900, -700);
-    var y = getRandomInt(-500, 300);
-    $(this).css({
-      transform: 'translate(' + x + 'px,' + y + 'px)',
-    })
-})
+hideThurstanDesktop();
 
-checkIfVisible($('.thurstan.work'), showThurstanDesktop);
+checkIfVisible($('.thurstan.work'), showThurstanDesktop, hideThurstanDesktop);
 
 
 });
