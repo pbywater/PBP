@@ -4,6 +4,33 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+function checkIfVisible(el, cb) {
+$(window).scroll(function() {
+    var top_of_element = el.offset().top;
+    var bottom_of_element = el.offset().top + el.outerHeight();
+    var bottom_of_screen = $(window).scrollTop() + $(window).height();
+    var top_of_screen = $(window).scrollTop();
+
+    if((bottom_of_screen > top_of_element) && (top_of_screen < bottom_of_element)){
+      console.log(true);
+      cb();
+    }
+    console.log(false);
+});
+}
+
+function showThurstanDesktop(){
+  setTimeout(function () {
+  $('.desktop.thurstan rect, .desktop.thurstan polygon, .desktop.thurstan path:not(.exception-1, .exception-2, .exception-3)').each(function() {
+    $(this).css({
+      visibility: 'visible',
+      transform: 'translate(0px,0px)',
+    })
+  });
+  $('.desktop.thurstan path.exception-1, .desktop.thurstan path.exception-2, .desktop.thurstan path.exception-3').removeClass('hiding');
+}, 500);
+}
+
 jQuery(document).ready(function() {
   jQuery('a[href^="#"]').on('click', function(e) {
     e.preventDefault();
@@ -94,4 +121,16 @@ jQuery(document).ready(function() {
       jQuery(this).addClass('clicked').removeClass('initial').off('mouseover');
     });
   }
+
+$('.desktop.thurstan rect, .desktop.thurstan polygon, .desktop.thurstan path:not(.exception-1, .exception-2, .exception-3)').each(function() {
+  var x = getRandomInt(-900, -700);
+    var y = getRandomInt(-500, 300);
+    $(this).css({
+      transform: 'translate(' + x + 'px,' + y + 'px)',
+    })
+})
+
+checkIfVisible($('.thurstan.work'), showThurstanDesktop);
+
+
 });
