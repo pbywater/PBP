@@ -28,6 +28,8 @@ $('.desktop.thurstan rect:not(#rectangle), .desktop.thurstan polygon, .desktop.t
       transform: 'translate(' + x + 'px,' + y + 'px)',
     })
 })
+$('#rectangle').fadeOut();
+$('.thurstan-1-img img').fadeOut();
 $('.desktop.thurstan path.exception-1, .desktop.thurstan path.exception-2, .desktop.thurstan path.exception-3').addClass('hiding');
 }
 
@@ -41,20 +43,20 @@ function showThurstanDesktop(){
   });
   $('.desktop.thurstan path.exception-1, .desktop.thurstan path.exception-2, .desktop.thurstan path.exception-3').removeClass('hiding');
   setTimeout(function () {
-    var svgWidth = $('.desktop.thurstan').width();
-    console.log('svg width', svgWidth);
-    var widthMinusCanvas = svgWidth * 0.9241774;
-    console.log('width minus canvas', widthMinusCanvas);
-    var rectWidth = $('.desktop.thurstan rect').attr('width');
-    console.log('rect width', rectWidth);
-    var calc = widthMinusCanvas - rectWidth * 5;
-    console.log('this one', calc);
+    // var svgWidth = $('.desktop.thurstan').width();
+    // console.log('svg width', svgWidth);
+    // var widthMinusCanvas = svgWidth * 0.9241774;
+    // console.log('width minus canvas', widthMinusCanvas);
+    // var rectWidth = $('.desktop.thurstan rect').attr('width');
+    // console.log('rect width', rectWidth);
+    // var calc = widthMinusCanvas - rectWidth * 5;
+    // console.log('this one', calc);
     // $('.thurstan-1-img img').css({
     //   width: calc,
     // })
     $('#rectangle').fadeIn();
     $('.thurstan-1-img img').fadeIn();
-  }, 3000);
+  }, 2000);
 }, 500);
 }
 
@@ -153,7 +155,8 @@ hideThurstanDesktop();
 
 checkIfVisible($('.thurstan.work'), showThurstanDesktop, hideThurstanDesktop);
 
-
-console.log('rectangeleafbds', document.getElementById('rectangle').width.animVal.value);
+$('.scroll-right').on('click', function() {
+  hideThurstanDesktop();
+})
 
 });
