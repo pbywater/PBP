@@ -32,7 +32,7 @@ function showDesktop(section){
     // $('.thurstan-1-img img').css({
     //   width: calc,
     // })
-    setHeight('thurstan', 'desktop', 'thurstan-1-img', 12, 1, '15%', 'none', 'none', 'none');
+    setPosition('thurstan', 'desktop', 'thurstan-1-img', 10, 7.5, '15%', 'none', 'none', 'none');
   // }, 2000);
 }, 500);
 }
@@ -75,11 +75,11 @@ function hideMobile(section) {
   })
 }
 
-function setHeight(name, pixelType, imageGroup, divideBy, timesBy, top, marginTop, marginLeft, leftMarginByPosition) {
+function setPosition(name, pixelType, imageGroup, divideBy, timesBy, top, marginTop, marginLeft, leftMarginByPosition) {
   var svg = $('.'+pixelType+'.'+name);
   var svgWidth=svg.width();
   var fixWidth = (svgWidth/divideBy) * timesBy;
-  $('.'+imageGroup).css({width: fixWidth+'%' });
+  $('.'+imageGroup).css({width: fixWidth });
   if (top !== 'none') {
     $('.'+imageGroup).css({top: top });
   }
@@ -100,9 +100,9 @@ function setHeight(name, pixelType, imageGroup, divideBy, timesBy, top, marginTo
   }, 2000);
 }
 
-// setHeight('thurstan', 'desktop', 'thurstan-1-img', 10, 8, '15%', 'none', 'none', 'none');
-// setHeight('thurstan', 'ipad', 'thurstan-2-img-ipad', 16, 1, 'none', '17%', '6%', 'none');
-// setHeight('thurstan', 'mobile', 'thurstan-2-img-mobile', 10, 1.8, 'none', '25%', 'none', 1.03);
+// setPosition('thurstan', 'desktop', 'thurstan-1-img', 10, 8, '15%', 'none', 'none', 'none');
+// setPosition('thurstan', 'ipad', 'thurstan-2-img-ipad', 16, 1, 'none', '17%', '6%', 'none');
+// setPosition('thurstan', 'mobile', 'thurstan-2-img-mobile', 10, 1.8, 'none', '25%', 'none', 1.03);
 
 // var mobileWidth = $('.thurstan.mobile').width();
 // var mobileXPos = ($('.thurstan.mobile').position().left) * 1.03;
@@ -114,7 +114,7 @@ function setHeight(name, pixelType, imageGroup, divideBy, timesBy, top, marginTo
 //   width: fixMWidth + '%'
 // })
 
-// function setHeight(name, imageGroup, divideBy, timesBy, top, marginTop, marginLeft) {
+// function setPosition(name, imageGroup, divideBy, timesBy, top, marginTop, marginLeft) {
 //   var svg = $('.desktop.thurstan');
 //   var svgWidth=svg.width();
 //   var fixWidth = (svgWidth/10) * 8;

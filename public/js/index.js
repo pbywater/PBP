@@ -26,9 +26,9 @@ $('.thurstan.scroll-right').on('click', function() {
   }, 1500);
   setTimeout(function () {
     showIpad('thurstan');
-    setHeight('thurstan', 'ipad', 'thurstan-2-img-ipad', 16, 1, 'none', '17%', '6%', 'none');
+    setPosition('thurstan', 'ipad', 'thurstan-2-img-ipad', 10, 6.5, 'none', '15%', '6%', 'none');
     showMobile('thurstan');
-    setHeight('thurstan', 'mobile', 'thurstan-2-img-mobile', 10, 1.8, 'none', '25%', 'none', 1.03);
+    setPosition('thurstan', 'mobile', 'thurstan-2-img-mobile', 10, 5.5, 'none', '23%', 'none', 1.03);
   }, 1600);
 })
 
@@ -51,7 +51,7 @@ $('.thurstan.scroll-left').on('click', function() {
 });
 
 $(window).resize(function() {
-  setHeight('thurstan', 'desktop', 'thurstan-1-img', 12, 1, '15%', 'none', 'none', 'none');
-  setHeight('thurstan', 'ipad', 'thurstan-2-img-ipad', 16, 1, 'none', '17%', '6%', 'none');
-  setHeight('thurstan', 'mobile', 'thurstan-2-img-mobile', 10, 1.8, 'none', '25%', 'none', 1.03);
+  setPosition('thurstan', 'desktop', 'thurstan-1-img', 10, 7.5, '15%', 'none', 'none', 'none');
+  setPosition('thurstan', 'ipad', 'thurstan-2-img-ipad', 10, 6.5, 'none', '15%', '6%', 'none');
+  setPosition('thurstan', 'mobile', 'thurstan-2-img-mobile', 10, 5.5, 'none', '23%', 'none', 1.03);
 })
