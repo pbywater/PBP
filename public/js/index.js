@@ -1,162 +1,80 @@
-// When the user clicks on the button, scroll to the top of the document
-
-function getRandomInt(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-function checkIfVisible(el, funcIfTrue, funcIfFalse) {
-$(window).scroll(function() {
-    var top_of_element = el.offset().top;
-    var bottom_of_element = el.offset().top + el.outerHeight();
-    var bottom_of_screen = $(window).scrollTop() + $(window).height();
-    var top_of_screen = $(window).scrollTop();
-
-    if((bottom_of_screen > top_of_element) && (top_of_screen < bottom_of_element)){
-      funcIfTrue();
-    }
-    else {
-      funcIfFalse();
-    }
-});
-}
-
-function hideThurstanDesktop() {
-$('.desktop.thurstan rect:not(#rectangle), .desktop.thurstan polygon, .desktop.thurstan path:not(.exception-1, .exception-2, .exception-3)').each(function() {
-  var x = getRandomInt(-900, -700);
-    var y = getRandomInt(-500, 300);
-    $(this).css({
-      transform: 'translate(' + x + 'px,' + y + 'px)',
-    })
-})
-$('#rectangle').fadeOut();
-$('.thurstan-1-img img').fadeOut();
-$('.desktop.thurstan path.exception-1, .desktop.thurstan path.exception-2, .desktop.thurstan path.exception-3').addClass('hiding');
-}
-
-function showThurstanDesktop(){
-  setTimeout(function () {
-  $('.desktop.thurstan rect:not(#rectangle), .desktop.thurstan polygon, .desktop.thurstan path:not(.exception-1, .exception-2, .exception-3)').each(function() {
-    $(this).css({
-      visibility: 'visible',
-      transform: 'translate(0px,0px)',
-    })
-  });
-  $('.desktop.thurstan path.exception-1, .desktop.thurstan path.exception-2, .desktop.thurstan path.exception-3').removeClass('hiding');
-  setTimeout(function () {
-    // var svgWidth = $('.desktop.thurstan').width();
-    // console.log('svg width', svgWidth);
-    // var widthMinusCanvas = svgWidth * 0.9241774;
-    // console.log('width minus canvas', widthMinusCanvas);
-    // var rectWidth = $('.desktop.thurstan rect').attr('width');
-    // console.log('rect width', rectWidth);
-    // var calc = widthMinusCanvas - rectWidth * 5;
-    // console.log('this one', calc);
-    // $('.thurstan-1-img img').css({
-    //   width: calc,
-    // })
-    $('#rectangle').fadeIn();
-    $('.thurstan-1-img img').fadeIn();
-  }, 2000);
-}, 500);
-}
-
 jQuery(document).ready(function() {
-  jQuery('a[href^="#"]').on('click', function(e) {
-    e.preventDefault();
 
-    var target = this.hash;
-    var $target = jQuery(target);
+scrollAnimation();
+iphoneFix();
+manageTopNav();
+pixelAnimation();
 
-    jQuery('html, body').stop().animate({
-      scrollTop: $target.offset().top
-    }, 600, 'swing', function() {
-      window.location.hash = target;
-    });
-  });
-
-  var isSafari =
-    navigator.vendor &&
-    navigator.vendor.indexOf('Apple') > -1 &&
-    navigator.userAgent &&
-    !navigator.userAgent.match('CriOS');
-
-  if (isSafari) {
-    jQuery('.chevron-down').css('display', 'none');
-  }
-
-  $(document).scroll(function() {
-    var y = $(this).scrollTop();
-    if (y > 200) {
-      $('.fixed').css('display', 'block');
-    } else {
-      $('.fixed').css('display', 'none');
-    }
-  });
-
-  var originalPosition = [];
-  jQuery('rect').each(function() {
-    originalPosition.push(jQuery(this).offset());
-  });
-
-  jQuery('.initial').on('mouseover', function() {
-    var x = getRandomInt(-150, 150);
-    var y = getRandomInt(-200, 200);
-    var randomNum = getRandomInt(0, 3);
-    var colours = ['white', '#c4e6ef', '#cdb6e7', '#9bfeca'];
-    var randomColour = colours[randomNum];
-    var element = jQuery(this);
-    element.css({
-      '-webkit-transform': 'translate(' + x + 'px,' + y + 'px)',
-      '-ms-transform': 'translate(' + x + 'px,' + y + 'px)',
-      transform: 'translate(' + x + 'px,' + y + 'px)',
-      fill: randomColour
-    });
-    setTimeout(function() {
-      jQuery(element).css({
-        '-webkit-transform': 'translate(0px,0px)',
-        '-ms-transform': 'translate(0px,0px)',
-        transform: 'translate(0px,0px)'
-      });
-    }, 5000);
-    setTimeout(function() {
-      jQuery(element).css({
-        fill: 'white',
-        height: '10px',
-        width: '10px'
-      });
-    }, 9000);
-  });
-
-  var isMobile = window.matchMedia('only screen and (max-width: 760px)');
+var isMobile = window.matchMedia('only screen and (max-width: 760px)');
 
   if (isMobile.matches) {
-    jQuery('.initial').on('click', function() {
-      var randomNum = getRandomInt(0, 3);
-      var colours = ['#c4e6ef', '#cdb6e7', '#9bfeca', '#ff8f93'];
-      var randomColour = colours[randomNum];
-      jQuery(this).css({
-        height: '25px',
-        width: '25px',
-        fill: randomColour
-      });
-    });
+mobileColours();
   } else {
-    jQuery('.initial').on('click', function() {
-      jQuery(this).css({
-        height: '25px',
-        width: '25px',
-        fill: '#ff8f93'
-      });
-      jQuery(this).addClass('clicked').removeClass('initial').off('mouseover');
-    });
+desktopColours();
   }
 
-hideThurstanDesktop();
+hideDesktop('thurstan');
+checkIfVisible($('.thurstan.work'), showDesktop, hideDesktop, 'thurstan');
+hideMobile('thurstan');
+hideIpad('thurstan');
 
-checkIfVisible($('.thurstan.work'), showThurstanDesktop, hideThurstanDesktop);
+$('.thurstan.scroll-right').on('click', function() {
+  hideDesktop('thurstan');
+  setTimeout(function () {
+      $('.thurstan-2').css({display: 'flex'});
+      $('.desktop.thurstan, .thurstan-1').hide();
+  }, 1500);
+  setTimeout(function () {
+    showIpad('thurstan');
+    setHeight('thurstan', 'ipad', 'thurstan-2-img-ipad', 16, 1, 'none', '17%', '6%', 'none');
+    // var ipadWidth = $('.thurstan.ipad').width();
+    // var ipadHeight = $('.thurstan.ipad').height();
+    // var fixHeight = (ipadHeight/10) * 1.8;
+    // var fixWidth = (ipadWidth/16);
+    // $('.thurstan-2-img-ipad').css({
+    //   marginTop: '17%',
+    //   marginLeft: '6%',
+    //   width: fixWidth + '%'
+    // })
+    showMobile('thurstan');
+    setHeight('thurstan', 'mobile', 'thurstan-2-img-mobile', 10, 1.8, 'none', '25%', 'none', 1.03);
+    // var mobileWidth = $('.thurstan.mobile').width();
+    // var mobileXPos = ($('.thurstan.mobile').position().left) * 1.03;
+    // var fixMHeight = (ipadHeight/10) * 1.8;
+    // var fixMWidth = (mobileWidth/19);
+    // $('.thurstan-2-img-mobile').css({
+    //   marginTop: '25%',
+    //   marginLeft: mobileXPos,
+    //   width: fixMWidth + '%'
+    // })
+    setTimeout(function () {
+      $('.thurstan-2-img-ipad img').css({opacity: '1'});
+      $('.thurstan-2-img-mobile img').css({opacity: '1'});
+    }, 1900);
 
-$('.scroll-right').on('click', function() {
-  hideThurstanDesktop();
+  }, 1600);
 })
 
+$('.thurstan.scroll-left').on('click', function() {
+  hideIpad('thurstan');
+  hideMobile('thurstan');
+  setTimeout(function () {
+      $('.thurstan-2').hide();
+  }, 1000);
+  setTimeout(function () {
+    showDesktop('thurstan');
+    $('.desktop.thurstan').fadeIn();
+  }, 1100);
+  setTimeout(function () {
+          $('.thurstan-1').show();
+  }, 1800);
+})
+
+
 });
+
+$(window).resize(function() {
+  setHeight('thurstan', 'desktop', 'thurstan-1-img', 12, 1, '15%', 'none', 'none', 'none');
+  setHeight('thurstan', 'ipad', 'thurstan-2-img-ipad', 16, 1, 'none', '17%', '6%', 'none');
+  setHeight('thurstan', 'mobile', 'thurstan-2-img-mobile', 10, 1.8, 'none', '25%', 'none', 1.03);
+})
