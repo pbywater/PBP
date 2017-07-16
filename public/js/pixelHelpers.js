@@ -32,7 +32,7 @@ function showDesktop(section){
     // $('.thurstan-1-img img').css({
     //   width: calc,
     // })
-    setPosition('thurstan', 'desktop', 'thurstan-1-img', 10, 7.5, '15%', 'none', 'none', 'none');
+    setPosition('thurstan', 'desktop', 'thurstan-1-img', 10, 7.5, 1.5, 'none', 'none', 'none');
   // }, 2000);
 }, 500);
 }
@@ -46,7 +46,7 @@ function showIpad(section) {
   });
 }
 
-function hideIpad(section) {
+function hideIpad(section, imageGroup) {
   $('.ipad.'+section+' rect, .ipad.'+section+' polygon, .ipad.'+section+' path').each(function() {
     var x = getRandomInt(-1000, -800);
       var y = getRandomInt(-700, 300);
@@ -54,6 +54,8 @@ function hideIpad(section) {
         transform: 'translate(' + x + 'px,' + y + 'px)',
       })
   })
+  $('#'+imageGroup+'-ipad-rectangle').fadeOut();
+  $('.'+imageGroup+' img').css({opacity: '0'});
 }
 
 function showMobile(section) {
@@ -65,7 +67,7 @@ function showMobile(section) {
   });
 }
 
-function hideMobile(section) {
+function hideMobile(section, imageGroup) {
   $('.mobile.'+section+' rect, .mobile.'+section+' polygon, .mobile.'+section+' path').each(function() {
     var x = getRandomInt(800, 1000);
       var y = getRandomInt(-300, 700);
@@ -73,6 +75,8 @@ function hideMobile(section) {
         transform: 'translate(' + x + 'px,' + y + 'px)',
       })
   })
+  $('#'+imageGroup+'-mobile-rectangle').fadeOut();
+  $('.'+imageGroup+' img').css({opacity: '0'});
 }
 
 function setPosition(name, pixelType, imageGroup, divideBy, timesBy, top, marginTop, marginLeft, leftMarginByPosition) {
@@ -81,10 +85,12 @@ function setPosition(name, pixelType, imageGroup, divideBy, timesBy, top, margin
   var fixWidth = (svgWidth/divideBy) * timesBy;
   $('.'+imageGroup).css({width: fixWidth });
   if (top !== 'none') {
-    $('.'+imageGroup).css({top: top });
+    var topMargin = (($('.'+name+'.'+pixelType).position().top) - ($('#'+name).position().top)) * top;
+    $('.'+imageGroup).css({top: topMargin });
   }
   if (marginTop !== 'none') {
-    $('.'+imageGroup).css({marginTop: marginTop });
+    var topMargin = (($('.'+name+'.'+pixelType).position().top) - ($('#'+name).position().top)) * marginTop;
+    $('.'+imageGroup).css({marginTop: topMargin });
   }
   if (marginLeft !== 'none') {
     $('.'+imageGroup).css({marginLeft: marginLeft });
@@ -99,35 +105,3 @@ function setPosition(name, pixelType, imageGroup, divideBy, timesBy, top, margin
     $('.'+imageGroup+' img').css({opacity: '1'});
   }, 2000);
 }
-
-// setPosition('thurstan', 'desktop', 'thurstan-1-img', 10, 8, '15%', 'none', 'none', 'none');
-// setPosition('thurstan', 'ipad', 'thurstan-2-img-ipad', 16, 1, 'none', '17%', '6%', 'none');
-// setPosition('thurstan', 'mobile', 'thurstan-2-img-mobile', 10, 1.8, 'none', '25%', 'none', 1.03);
-
-// var mobileWidth = $('.thurstan.mobile').width();
-// var mobileXPos = ($('.thurstan.mobile').position().left) * 1.03;
-// var fixMHeight = (ipadHeight/10) * 1.8;
-// var fixMWidth = (mobileWidth/19);
-// $('.thurstan-2-img-mobile').css({
-//   marginTop: '25%',
-//   marginLeft: mobileXPos,
-//   width: fixMWidth + '%'
-// })
-
-// function setPosition(name, imageGroup, divideBy, timesBy, top, marginTop, marginLeft) {
-//   var svg = $('.desktop.thurstan');
-//   var svgWidth=svg.width();
-//   var fixWidth = (svgWidth/10) * 8;
-//   $('.thurstan-1-img').css({top : '15%', width: fixWidth });
-//   $('#rectangle').fadeIn();
-//   $('.thurstan.border').css({position: 'relative'});
-//   $('.thurstan-1-img img').css({opacity: '1'});
-// }
-//
-// var ipadWidth = $('.thurstan.ipad').width();
-// var fixWidth = (ipadWidth/16);
-// $('.thurstan-2-img-ipad').css({
-//   marginTop: '17%',
-//   marginLeft: '6%',
-//   width: fixWidth + '%'
-// })
