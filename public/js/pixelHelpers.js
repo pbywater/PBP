@@ -20,7 +20,7 @@ function showDesktop(section){
     })
   });
   $('.desktop.thurstan path.exception-1, .desktop.thurstan path.exception-2, .desktop.thurstan path.exception-3').removeClass('hiding');
-  setTimeout(function () {
+  // setTimeout(function () {
     // var svgWidth = $('.desktop.thurstan').width();
     // console.log('svg width', svgWidth);
     // var widthMinusCanvas = svgWidth * 0.9241774;
@@ -33,7 +33,7 @@ function showDesktop(section){
     //   width: calc,
     // })
     setHeight('thurstan', 'desktop', 'thurstan-1-img', 12, 1, '15%', 'none', 'none', 'none');
-  }, 2000);
+  // }, 2000);
 }, 500);
 }
 
@@ -93,10 +93,11 @@ function setHeight(name, pixelType, imageGroup, divideBy, timesBy, top, marginTo
     var leftMargin = ($('.'+name+'.'+pixelType).position().left) * leftMarginByPosition;
     $('.'+imageGroup).css({marginLeft: leftMargin });
   }
-  $('#'+imageGroup+'-'+pixelType+'-rectangle').fadeIn();
-  console.log('#'+imageGroup+'-'+pixelType+'-rectangle');
-  $('.'+name+'.border').css({position: 'relative'});
-  $('.'+imageGroup+' img').css({opacity: '1'});
+  setTimeout(function () {
+    $('#'+imageGroup+'-'+pixelType+'-rectangle').fadeIn();
+    $('.'+name+'.border').css({position: 'relative'});
+    $('.'+imageGroup+' img').css({opacity: '1'});
+  }, 2000);
 }
 
 // setHeight('thurstan', 'desktop', 'thurstan-1-img', 10, 8, '15%', 'none', 'none', 'none');
