@@ -29,6 +29,9 @@ $('.thurstan.scroll-right').on('click', function() {
     setPosition('thurstan', 'ipad', 'thurstan-2-img-ipad', 10, 6.5, 'none', 3, '6%', 'none');
     showMobile('thurstan');
     setPosition('thurstan', 'mobile', 'thurstan-2-img-mobile', 10, 5.5, 'none', 5.8, 'none', 1.03);
+    setTimeout(function () {
+      $('.thurstan-2-text').fadeIn().css('display', 'flex');
+    }, 2000);
   }, 1600);
 })
 
@@ -45,8 +48,10 @@ $('.thurstan.scroll-left').on('click', function() {
   setTimeout(function () {
           $('.thurstan-1').show();
   }, 1800);
+  $('.thurstan-2-text').fadeOut();
 })
 
+checkIfVisible($('#thurstan'), showBriefly, displayNone, $('.initial-heading.thurstan'));
 
 });
 
