@@ -60,6 +60,26 @@ checkIfVisible($('#gift-horse'), showBriefly, displayNone, $('.initial-heading.g
 checkIfVisible($('#genie'), showBriefly, displayNone, $('.initial-heading.genie'));
 checkIfVisible($('#lbw'), showBriefly, displayNone, $('.initial-heading.lbw'));
 
+$('.gift-horse.scroll-right').on('click', function() {
+  $('.gift-horse-1 > *').each( function () {
+    if($(this).find('img').css('opacity') == 1) {
+      console.log('hi');
+      $(this).find('img').css('opacity', 0);
+      var index = $(this).index() + 2;
+      $('.gift-horse-'+index+'-img img').css('opacity', 1);
+    }
+  })
+})
+
+$('.gift-horse.scroll-left').on('click', function() {
+  $('.gift-horse-1 > *').each( function () {
+    if($(this).find('img').css('opacity') == 1) {
+      $(this).find('img').css('opacity', 0);
+      var index = $(this).index();
+      $('.gift-horse-'+index+'-img img').css('opacity', 1);
+    }
+  })
+})
 
 });
 
@@ -68,4 +88,8 @@ $(window).resize(function() {
   setPosition('thurstan', 'ipad', 'thurstan-2-img-ipad', 10, 6.5, 'none', 3, '6%', 'none');
   setPosition('thurstan', 'mobile', 'thurstan-2-img-mobile', 10, 5.5, 'none', 5.8, 'none', 1.03);
   setPosition('gift-horse', 'desktop', 'gift-horse-1-img', 10, 7.5, 1.5, 'none', 'none', 'none', 'none');
+  setPosition('gift-horse', 'desktop', 'gift-horse-2-img', 10, 7.5, 1.5, 'none', 'none', 'none', 'none');
+  setPosition('gift-horse', 'desktop', 'gift-horse-3-img', 10, 7.5, 1.5, 'none', 'none', 'none', 'none');
+  setPosition('gift-horse', 'desktop', 'gift-horse-4-img', 10, 7.5, 1.5, 'none', 'none', 'none', 'none');
+  setPosition('gift-horse', 'desktop', 'gift-horse-5-img', 10, 7.5, 1.5, 'none', 'none', 'none', 'none');
 })
