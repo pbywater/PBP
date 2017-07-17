@@ -18,6 +18,10 @@ checkIfVisible($('.thurstan.work'), showDesktop, hideDesktop, 'thurstan');
 hideMobile('thurstan', 'thurstan-2-img-mobile');
 hideIpad('thurstan', 'thurstan-2-img-ipad');
 
+hideDesktop('gift-horse');
+checkIfVisible($('.gift-horse.work'), showDesktop, hideDesktop, 'gift-horse');
+
+
 $('.thurstan.scroll-right').on('click', function() {
   hideDesktop('thurstan');
   setTimeout(function () {
@@ -63,4 +67,5 @@ $(window).resize(function() {
   setPosition('thurstan', 'desktop', 'thurstan-1-img', 10, 7.5, 1.5, 'none', 'none', 'none', 'none');
   setPosition('thurstan', 'ipad', 'thurstan-2-img-ipad', 10, 6.5, 'none', 3, '6%', 'none');
   setPosition('thurstan', 'mobile', 'thurstan-2-img-mobile', 10, 5.5, 'none', 5.8, 'none', 1.03);
+  setPosition('gift-horse', 'desktop', 'gift-horse-1-img', 10, 7.5, 1.5, 'none', 'none', 'none', 'none');
 })

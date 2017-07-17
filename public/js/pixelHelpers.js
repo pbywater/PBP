@@ -1,39 +1,26 @@
 function hideDesktop(section) {
-$('.desktop.'+section+' rect:not(#thurstan-1-img-desktop-rectangle), .desktop.'+section+' polygon, .desktop.'+section+' path:not(.exception-1, .exception-2, .exception-3)').each(function() {
+$('.desktop.'+section+' rect:not(#'+section+'-1-img-desktop-rectangle), .desktop.'+section+' polygon, .desktop.'+section+' path:not(.exception-1, .exception-2, .exception-3)').each(function() {
   var x = getRandomInt(-1200, -1000);
     var y = getRandomInt(-900, 500);
     $(this).css({
       transform: 'translate(' + x + 'px,' + y + 'px)',
     })
 })
-$('#thurstan-1-img-desktop-rectangle').fadeOut();
-$('.thurstan-1-img img').css({opacity: '0'});
-$('.desktop.thurstan path.exception-1, .desktop.thurstan path.exception-2, .desktop.thurstan path.exception-3').addClass('hiding');
+$('#'+section+'-1-img-desktop-rectangle').fadeOut();
+$('.'+section+'-1-img img').css({opacity: '0'});
+$('.desktop.'+section+' path.exception-1, .desktop.'+section+' path.exception-2, .desktop.'+section+' path.exception-3').addClass('hiding');
 }
 
 function showDesktop(section){
   setTimeout(function () {
-  $('.desktop.'+section+' rect:not(#thurstan-1-img-desktop-rectangle), .desktop.'+section+' polygon, .desktop.'+section+' path:not(.exception-1, .exception-2, .exception-3)').each(function() {
+  $('.desktop.'+section+' rect:not(#'+section+'-1-img-desktop-rectangle), .desktop.'+section+' polygon, .desktop.'+section+' path:not(.exception-1, .exception-2, .exception-3)').each(function() {
     $(this).css({
       visibility: 'visible',
       transform: 'translate(0px,0px)',
     })
   });
-  $('.desktop.thurstan path.exception-1, .desktop.thurstan path.exception-2, .desktop.thurstan path.exception-3').removeClass('hiding');
-  // setTimeout(function () {
-    // var svgWidth = $('.desktop.thurstan').width();
-    // console.log('svg width', svgWidth);
-    // var widthMinusCanvas = svgWidth * 0.9241774;
-    // console.log('width minus canvas', widthMinusCanvas);
-    // var rectWidth = $('.desktop.thurstan rect').attr('width');
-    // console.log('rect width', rectWidth);
-    // var calc = widthMinusCanvas - rectWidth * 5;
-    // console.log('this one', calc);
-    // $('.thurstan-1-img img').css({
-    //   width: calc,
-    // })
-    setPosition('thurstan', 'desktop', 'thurstan-1-img', 10, 7.5, 1.5, 'none', 'none', 'none');
-  // }, 2000);
+  $('.desktop.'+section+' path.exception-1, .desktop.'+section+' path.exception-2, .desktop.'+section+' path.exception-3').removeClass('hiding');
+    setPosition(section, 'desktop', section+'-1-img', 10, 7.5, 1.5, 'none', 'none', 'none');
 }, 500);
 }
 
@@ -80,7 +67,9 @@ function hideMobile(section, imageGroup) {
 }
 
 function setPosition(name, pixelType, imageGroup, divideBy, timesBy, top, marginTop, marginLeft, leftMarginByPosition) {
+  console.log('getting in ', name);
   var svg = $('.'+pixelType+'.'+name);
+  console.log('svg is ', svg);
   var svgWidth=svg.width();
   var fixWidth = (svgWidth/divideBy) * timesBy;
   $('.'+imageGroup).css({width: fixWidth });
