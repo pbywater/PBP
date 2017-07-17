@@ -52,6 +52,10 @@ $('.thurstan.scroll-left').on('click', function() {
 })
 
 checkIfVisible($('#thurstan'), showBriefly, displayNone, $('.initial-heading.thurstan'));
+checkIfVisible($('#gift-horse'), showBriefly, displayNone, $('.initial-heading.gift-horse'));
+checkIfVisible($('#genie'), showBriefly, displayNone, $('.initial-heading.genie'));
+checkIfVisible($('#lbw'), showBriefly, displayNone, $('.initial-heading.lbw'));
+
 
 });
 
