@@ -55,3 +55,11 @@ function manageTopNav() {
     }
   });
 }
+
+function doNothing(params) {
+  return;
+}
+
+function opacityZero(element) {
+  $('.'+element).css('opacity', 0);
+}

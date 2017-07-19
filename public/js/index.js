@@ -20,7 +20,10 @@ hideIpad('thurstan', 'thurstan-2-img-ipad');
 
 hideDesktop('gift-horse');
 checkIfVisible($('.gift-horse.work'), showDesktop, hideDesktop, 'gift-horse');
-
+// checkIfVisible($('.gift-horse.work'), doNothing, opacityZero, 'gift-horse-2-img');
+// checkIfVisible($('.gift-horse.work'), doNothing, opacityZero, 'gift-horse-3-img');
+// checkIfVisible($('.gift-horse.work'), doNothing, opacityZero, 'gift-horse-4-img');
+// checkIfVisible($('.gift-horse.work'), doNothing, opacityZero, 'gift-horse-5-img');
 
 $('.thurstan.scroll-right').on('click', function() {
   hideDesktop('thurstan');
@@ -30,9 +33,9 @@ $('.thurstan.scroll-right').on('click', function() {
   }, 1500);
   setTimeout(function () {
     showIpad('thurstan');
-    setPosition('thurstan', 'ipad', 'thurstan-2-img-ipad', 10, 6.5, 'none', 3, '6%', 'none');
+    setPosition('thurstan', 'ipad', 'thurstan-2-img-ipad', 10, 6.5, 'none', 3, '6%', 'none', 'no');
     showMobile('thurstan');
-    setPosition('thurstan', 'mobile', 'thurstan-2-img-mobile', 10, 5.5, 'none', 5.8, 'none', 1.03);
+    setPosition('thurstan', 'mobile', 'thurstan-2-img-mobile', 10, 5.5, 'none', 5.8, 'none', 1.03, 'no');
     setTimeout(function () {
       $('.thurstan-2-text').fadeIn().css('display', 'flex');
     }, 2000);
@@ -63,10 +66,16 @@ checkIfVisible($('#lbw'), showBriefly, displayNone, $('.initial-heading.lbw'));
 $('.gift-horse.scroll-right').on('click', function() {
   $('.gift-horse-1 > *').each( function () {
     if($(this).find('img').css('opacity') == 1) {
-      console.log('hi');
-      $(this).find('img').css('opacity', 0);
       var index = $(this).index() + 2;
+      $(this).find('img').css('opacity', 0);
+      if ($('.gift-horse-'+index+'-img').length) {
+      setPosition('gift-horse', 'desktop', 'gift-horse-'+index+'-img', 10, 7.5, 1.5, 'none', 'none', 'none', 'none', 'yes');
       $('.gift-horse-'+index+'-img img').css('opacity', 1);
+    }
+    else {
+      setPosition('gift-horse', 'desktop', 'gift-horse-1-img', 10, 7.5, 1.5, 'none', 'none', 'none', 'none', 'yes');
+      $('.gift-horse-1-img img').css('opacity', 1);
+    }
     }
   })
 })
@@ -74,9 +83,17 @@ $('.gift-horse.scroll-right').on('click', function() {
 $('.gift-horse.scroll-left').on('click', function() {
   $('.gift-horse-1 > *').each( function () {
     if($(this).find('img').css('opacity') == 1) {
-      $(this).find('img').css('opacity', 0);
       var index = $(this).index();
+      $(this).find('img').css('opacity', 0);
+      if ($('.gift-horse-'+index+'-img').length) {
+      setPosition('gift-horse', 'desktop', 'gift-horse-'+index+'-img', 10, 7.5, 1.5, 'none', 'none', 'none', 'none', 'yes');
       $('.gift-horse-'+index+'-img img').css('opacity', 1);
+    }
+    else {
+      var numImages = $('.gift-horse-1').children().length;
+      setPosition('gift-horse', 'desktop', 'gift-horse-'+numImages+'-img', 10, 7.5, 1.5, 'none', 'none', 'none', 'none', 'yes');
+      $('.gift-horse-'+numImages+'-img img').css('opacity', 1);
+    }
     }
   })
 })
@@ -84,12 +101,12 @@ $('.gift-horse.scroll-left').on('click', function() {
 });
 
 $(window).resize(function() {
-  setPosition('thurstan', 'desktop', 'thurstan-1-img', 10, 7.5, 1.5, 'none', 'none', 'none', 'none');
-  setPosition('thurstan', 'ipad', 'thurstan-2-img-ipad', 10, 6.5, 'none', 3, '6%', 'none');
-  setPosition('thurstan', 'mobile', 'thurstan-2-img-mobile', 10, 5.5, 'none', 5.8, 'none', 1.03);
-  setPosition('gift-horse', 'desktop', 'gift-horse-1-img', 10, 7.5, 1.5, 'none', 'none', 'none', 'none');
-  setPosition('gift-horse', 'desktop', 'gift-horse-2-img', 10, 7.5, 1.5, 'none', 'none', 'none', 'none');
-  setPosition('gift-horse', 'desktop', 'gift-horse-3-img', 10, 7.5, 1.5, 'none', 'none', 'none', 'none');
-  setPosition('gift-horse', 'desktop', 'gift-horse-4-img', 10, 7.5, 1.5, 'none', 'none', 'none', 'none');
-  setPosition('gift-horse', 'desktop', 'gift-horse-5-img', 10, 7.5, 1.5, 'none', 'none', 'none', 'none');
+  setPosition('thurstan', 'desktop', 'thurstan-1-img', 10, 7.5, 1.5, 'none', 'none', 'none', 'none', 'yes');
+  setPosition('thurstan', 'ipad', 'thurstan-2-img-ipad', 10, 6.5, 'none', 3, '6%', 'none', 'yes');
+  setPosition('thurstan', 'mobile', 'thurstan-2-img-mobile', 10, 5.5, 'none', 5.8, 'none', 1.03, 'yes');
+  setPosition('gift-horse', 'desktop', 'gift-horse-1-img', 10, 7.5, 1.5, 'none', 'none', 'none', 'none', 'yes');
+  setPosition('gift-horse', 'desktop', 'gift-horse-2-img', 10, 7.5, 1.5, 'none', 'none', 'none', 'none', 'yes');
+  setPosition('gift-horse', 'desktop', 'gift-horse-3-img', 10, 7.5, 1.5, 'none', 'none', 'none', 'none', 'yes');
+  setPosition('gift-horse', 'desktop', 'gift-horse-4-img', 10, 7.5, 1.5, 'none', 'none', 'none', 'none', 'yes');
+  setPosition('gift-horse', 'desktop', 'gift-horse-5-img', 10, 7.5, 1.5, 'none', 'none', 'none', 'none', 'yes');
 })

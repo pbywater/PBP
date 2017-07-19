@@ -20,7 +20,7 @@ function showDesktop(section){
     })
   });
   $('.desktop.'+section+' path.exception-1, .desktop.'+section+' path.exception-2, .desktop.'+section+' path.exception-3').removeClass('hiding');
-    setPosition(section, 'desktop', section+'-1-img', 10, 7.5, 1.5, 'none', 'none', 'none');
+    setPosition(section, 'desktop', section+'-1-img', 10, 7.5, 1.5, 'none', 'none', 'none', 'no');
 }, 500);
 }
 
@@ -66,10 +66,8 @@ function hideMobile(section, imageGroup) {
   $('.'+imageGroup+' img').css({opacity: '0'});
 }
 
-function setPosition(name, pixelType, imageGroup, divideBy, timesBy, top, marginTop, marginLeft, leftMarginByPosition) {
-  console.log('getting in ', name);
+function setPosition(name, pixelType, imageGroup, divideBy, timesBy, top, marginTop, marginLeft, leftMarginByPosition, resize) {
   var svg = $('.'+pixelType+'.'+name);
-  console.log('svg is ', svg);
   var svgWidth=svg.width();
   var fixWidth = (svgWidth/divideBy) * timesBy;
   $('.'+imageGroup).css({width: fixWidth });
@@ -89,8 +87,10 @@ function setPosition(name, pixelType, imageGroup, divideBy, timesBy, top, margin
     $('.'+imageGroup).css({marginLeft: leftMargin });
   }
   setTimeout(function () {
-    $('#'+imageGroup+'-'+pixelType+'-rectangle').fadeIn();
     $('.'+name+'.border').css({position: 'relative'});
+    if (resize === 'no') {
+    $('#'+imageGroup+'-'+pixelType+'-rectangle').fadeIn();
     $('.'+imageGroup+' img').css({opacity: '1'});
+  }
   }, 2000);
 }
