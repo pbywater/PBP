@@ -20,6 +20,14 @@ hideIpad('thurstan', 'thurstan-2-img-ipad');
 
 hideDesktop('gift-horse');
 checkIfVisible($('.gift-horse.work'), showDesktop, hideDesktop, 'gift-horse');
+
+hideMobile('genie', 'genie-1-img-img-mobile');
+checkIfVisible($('.genie.work'), showMobile, hideMobile, 'genie');
+
+hideDesktop('lbw');
+checkIfVisible($('.lbw.work'), showDesktop, hideDesktop, 'lbw');
+
+
 // checkIfVisible($('.gift-horse.work'), doNothing, opacityZero, 'gift-horse-2-img');
 // checkIfVisible($('.gift-horse.work'), doNothing, opacityZero, 'gift-horse-3-img');
 // checkIfVisible($('.gift-horse.work'), doNothing, opacityZero, 'gift-horse-4-img');
