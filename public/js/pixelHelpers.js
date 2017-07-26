@@ -45,16 +45,29 @@ function hideIpad(section, imageGroup) {
   $('.'+imageGroup+' img').css({opacity: '0'});
 }
 
-function showMobile(section) {
+function showMobile(section, text, imageGroup, setPos) {
   $('.mobile.'+section+' rect, .mobile.'+section+' polygon, .mobile.'+section+' path').each(function() {
     $(this).css({
       visibility: 'visible',
       transform: 'translate(0px,0px)',
     })
   });
+  $('#'+imageGroup+'-mobile-mobile-rectangle').css({display: 'none'});
+  if (text) {
+    $('.'+section+'-1-text').css({visibility: 'visible'});
+  }
+  setTimeout(function () {
+    $('#'+imageGroup+'-mobile-mobile-rectangle').fadeIn();
+    if (setPos === 'yes') {
+      setPosition(section, 'mobile', imageGroup, 10, 5.5, 'none', 3.4, 'none', 1.11, 'yes');
+      setTimeout(function () {
+        $('.'+imageGroup+' img').css({opacity: '1'});
+      }, 2000);
+  }
+}, 2000);
 }
 
-function hideMobile(section, imageGroup) {
+function hideMobile(section, text, imageGroup) {
   $('.mobile.'+section+' rect, .mobile.'+section+' polygon, .mobile.'+section+' path').each(function() {
     var x = getRandomInt(800, 1000);
       var y = getRandomInt(-300, 700);
@@ -62,8 +75,11 @@ function hideMobile(section, imageGroup) {
         transform: 'translate(' + x + 'px,' + y + 'px)',
       })
   })
-  $('#'+imageGroup+'-mobile-rectangle').fadeOut();
+  $('#'+imageGroup+'-mobile-mobile-rectangle').fadeOut();
   $('.'+imageGroup+' img').css({opacity: '0'});
+  if (text !== 'none') {
+    $('.'+section+'-1-text').css({visibility: 'hidden'});
+  }
 }
 
 function setPosition(name, pixelType, imageGroup, divideBy, timesBy, top, marginTop, marginLeft, leftMarginByPosition, resize) {

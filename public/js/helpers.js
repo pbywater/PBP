@@ -2,7 +2,7 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function checkIfVisible(el, funcIfTrue, funcIfFalse, params) {
+function checkIfVisible(el, funcIfTrue, funcIfFalse, section, text, imageGroup, setPosition) {
 $(window).scroll(function() {
     var top_of_element = el.offset().top;
     var bottom_of_element = el.offset().top + el.outerHeight();
@@ -10,11 +10,24 @@ $(window).scroll(function() {
     var top_of_screen = $(window).scrollTop();
 
     if((bottom_of_screen > top_of_element) && (top_of_screen < bottom_of_element)){
-      funcIfTrue(params);
+      if (text !== 'none' && setPosition === 'yes') {
+      funcIfTrue(section, text, imageGroup, setPosition);
+    }
+    else if (text !== 'none' && setPosition === 'no') {
+      funcIfTrue(section, text, imageGroup)
     }
     else {
-      funcIfFalse(params);
+      funcIfTrue(section, imageGroup);
     }
+    }
+    else {
+      if (text !== 'none') {
+      funcIfFalse(section, text, imageGroup);
+    }
+    else {
+      funcIfFalse(section, imageGroup);
+    }
+  }
 });
 }
 

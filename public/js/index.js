@@ -15,14 +15,14 @@ desktopColours();
 
 hideDesktop('thurstan');
 checkIfVisible($('.thurstan.work'), showDesktop, hideDesktop, 'thurstan');
-hideMobile('thurstan', 'thurstan-2-img-mobile');
+hideMobile('thurstan', 'none', 'thurstan-2-img');
 hideIpad('thurstan', 'thurstan-2-img-ipad');
 
 hideDesktop('gift-horse');
 checkIfVisible($('.gift-horse.work'), showDesktop, hideDesktop, 'gift-horse');
 
-hideMobile('genie', 'genie-1-img-img-mobile');
-checkIfVisible($('.genie.work'), showMobile, hideMobile, 'genie');
+hideMobile('genie', 'text', 'genie-1-img');
+checkIfVisible($('.genie.work'), showMobile, hideMobile, 'genie', 'text', 'genie-1-img', 'yes');
 
 hideDesktop('lbw');
 checkIfVisible($('.lbw.work'), showDesktop, hideDesktop, 'lbw');
@@ -42,7 +42,7 @@ $('.thurstan.scroll-right').on('click', function() {
   setTimeout(function () {
     showIpad('thurstan');
     setPosition('thurstan', 'ipad', 'thurstan-2-img-ipad', 10, 6.5, 'none', 3, '6%', 'none', 'no');
-    showMobile('thurstan');
+    showMobile('thurstan', 'none', 'thurstan-2-img-ipad', 'no');
     setPosition('thurstan', 'mobile', 'thurstan-2-img-mobile', 10, 5.5, 'none', 5.8, 'none', 1.03, 'no');
     setTimeout(function () {
       $('.thurstan-2-text').fadeIn().css('display', 'flex');
@@ -52,7 +52,7 @@ $('.thurstan.scroll-right').on('click', function() {
 
 $('.thurstan.scroll-left').on('click', function() {
   hideIpad('thurstan', 'thurstan-2-img-ipad');
-  hideMobile('thurstan', 'thurstan-2-img-mobile');
+  hideMobile('thurstan', 'none', 'thurstan-2-img');
   setTimeout(function () {
       $('.thurstan-2').hide();
   }, 1000);
@@ -106,6 +106,27 @@ $('.lbw.scroll-right').on('click', function() {
   })
 })
 
+$('.genie.scroll-right').on('click', function() {
+  $('.genie-1 > *').each( function () {
+    if($(this).find('img').css('opacity') == 1) {
+      var index = $(this).index() + 2;
+      console.log('index is ', index);
+      $(this).find('img').css('opacity', 0);
+      $('.genie-'+(index-1)+'-text').css({visibility: 'hidden', display: 'none'});
+      if ($('.genie-'+index+'-img').length) {
+        $('.genie-'+index+'-text').css({visibility: 'visible', display: 'flex'});
+        setPosition('genie', 'mobile', 'genie-'+index+'-img', 10, 5.5, 'none', 3.4, 'none', 1.11, 'yes');
+      $('.genie-'+index+'-img img').css('opacity', 1);
+    }
+    else {
+      $('.genie-1-text').css({visibility: 'visible', display: 'flex'});
+      setPosition('genie', 'mobile', 'genie-'+index+'-img', 10, 5.5, 'none', 3.4, 'none', 1.11, 'yes');
+      $('.genie-1-img img').css('opacity', 1);
+    }
+    }
+  })
+})
+
 $('.gift-horse.scroll-left').on('click', function() {
   $('.gift-horse-1 > *').each( function () {
     if($(this).find('img').css('opacity') == 1) {
@@ -142,6 +163,24 @@ $('.lbw.scroll-left').on('click', function() {
   })
 })
 
+$('.genie.scroll-left').on('click', function() {
+  $('.genie-1 > *').each( function () {
+    if($(this).find('img').css('opacity') == 1) {
+      var index = $(this).index();
+      $(this).find('img').css('opacity', 0);
+      if ($('.genie-'+index+'-img').length) {
+        setPosition('genie', 'mobile', 'genie-'+index+'-img', 10, 5.5, 'none', 3.4, 'none', 1.11, 'yes');
+      $('.genie-'+index+'-img img').css('opacity', 1);
+    }
+    else {
+      var numImages = $('.genie-1').children().length;
+      setPosition('genie', 'mobile', 'genie-'+index+'-img', 10, 5.5, 'none', 3.4, 'none', 1.11, 'yes');
+      $('.genie-'+numImages+'-img img').css('opacity', 1);
+    }
+    }
+  })
+})
+
 });
 
 $(window).resize(function() {
@@ -153,4 +192,11 @@ $(window).resize(function() {
   setPosition('gift-horse', 'desktop', 'gift-horse-3-img', 10, 7.5, 1.5, 'none', 'none', 'none', 'none', 'yes');
   setPosition('gift-horse', 'desktop', 'gift-horse-4-img', 10, 7.5, 1.5, 'none', 'none', 'none', 'none', 'yes');
   setPosition('gift-horse', 'desktop', 'gift-horse-5-img', 10, 7.5, 1.5, 'none', 'none', 'none', 'none', 'yes');
+  setPosition('lbw', 'desktop', 'lbw-1-img', 10, 7.5, 1.5, 'none', 'none', 'none', 'no');
+  setPosition('lbw', 'desktop', 'lbw-2-img', 10, 7.5, 1.5, 'none', 'none', 'none', 'no');
+  setPosition('genie', 'mobile', 'genie-1-img', 10, 5.5, 'none', 3.4, 'none', 1.11, 'yes');
+  setPosition('genie', 'mobile', 'genie-2-img', 10, 5.5, 'none', 3.4, 'none', 1.11, 'yes');
+  setPosition('genie', 'mobile', 'genie-3-img', 10, 5.5, 'none', 3.4, 'none', 1.11, 'yes');
+  setPosition('genie', 'mobile', 'genie-4-img', 10, 5.5, 'none', 3.4, 'none', 1.11, 'yes');
+
 })
