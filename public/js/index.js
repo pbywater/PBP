@@ -104,6 +104,7 @@ $('.lbw.scroll-right').on('click', function() {
     }
     }
   })
+  $('.lbw-1').scrollTop(0);
 })
 
 $('.genie.scroll-right').on('click', function() {
@@ -160,6 +161,7 @@ $('.lbw.scroll-left').on('click', function() {
     }
     }
   })
+  $('.lbw-1').scrollTop(0);
 })
 
 $('.genie.scroll-left').on('click', function() {
