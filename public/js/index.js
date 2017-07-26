@@ -110,7 +110,6 @@ $('.genie.scroll-right').on('click', function() {
   $('.genie-1 > *').each( function () {
     if($(this).find('img').css('opacity') == 1) {
       var index = $(this).index() + 2;
-      console.log('index is ', index);
       $(this).find('img').css('opacity', 0);
       $('.genie-'+(index-1)+'-text').css({visibility: 'hidden', display: 'none'});
       if ($('.genie-'+index+'-img').length) {
@@ -168,12 +167,15 @@ $('.genie.scroll-left').on('click', function() {
     if($(this).find('img').css('opacity') == 1) {
       var index = $(this).index();
       $(this).find('img').css('opacity', 0);
+      $('.genie-'+(index+1)+'-text').css({visibility: 'hidden', display: 'none'});
       if ($('.genie-'+index+'-img').length) {
+        $('.genie-'+index+'-text').css({visibility: 'visible', display: 'flex'});
         setPosition('genie', 'mobile', 'genie-'+index+'-img', 10, 5.5, 'none', 3.4, 'none', 1.11, 'yes');
       $('.genie-'+index+'-img img').css('opacity', 1);
     }
     else {
       var numImages = $('.genie-1').children().length;
+      $('.genie-1-text').css({visibility: 'visible', display: 'flex'});
       setPosition('genie', 'mobile', 'genie-'+index+'-img', 10, 5.5, 'none', 3.4, 'none', 1.11, 'yes');
       $('.genie-'+numImages+'-img img').css('opacity', 1);
     }
