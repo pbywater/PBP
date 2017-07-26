@@ -175,8 +175,8 @@ $('.genie.scroll-left').on('click', function() {
     }
     else {
       var numImages = $('.genie-1').children().length;
-      $('.genie-1-text').css({visibility: 'visible', display: 'flex'});
-      setPosition('genie', 'mobile', 'genie-'+index+'-img', 10, 5.5, 'none', 3.4, 'none', 1.11, 'yes');
+      $('.genie-'+numImages+'-text').css({visibility: 'visible', display: 'flex'});
+      setPosition('genie', 'mobile', 'genie-'+numImages+'-img', 10, 5.5, 'none', 3.4, 'none', 1.11, 'yes');
       $('.genie-'+numImages+'-img img').css('opacity', 1);
     }
     }
