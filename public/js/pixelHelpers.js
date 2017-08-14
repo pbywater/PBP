@@ -90,6 +90,9 @@ function setPosition(name, pixelType, imageGroup, divideBy, timesBy, top, margin
   var fixWidth = (svgWidth/divideBy) * timesBy;
   var isSmallish =  window.matchMedia('only screen and (max-width: 1100px)');
   var isMobile = window.matchMedia('only screen and (max-width: 760px)');
+  if (pixelType === 'mobile' && name === 'genie' && isMobile.matches) {
+        $('.'+imageGroup).css({top: '48%' });
+  }
   if (isSmallish.matches) {
   $('.'+imageGroup).css({width: fixWidth });
 }
@@ -114,8 +117,14 @@ $('.'+imageGroup).css({marginTop: '-5%' });
   }
   }
   if (marginTop !== 'none') {
+    if (isMobile.matches) {
+var topMargin = '0px';
+$('.'+imageGroup).css({marginTop: '0%' });
+    }
+    else {
     var topMargin = (($('.'+name+'.'+pixelType).position().top) - ($('#'+name).position().top)) * marginTop;
     $('.'+imageGroup).css({marginTop: topMargin });
+  }
   }
   if (marginLeft !== 'none') {
     $('.'+imageGroup).css({marginLeft: marginLeft });
