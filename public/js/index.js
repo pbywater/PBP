@@ -42,7 +42,7 @@ $('.thurstan.scroll-right').on('click', function() {
   setTimeout(function () {
     showIpad('thurstan');
     setPosition('thurstan', 'ipad', 'thurstan-2-img-ipad', 10, 6.5, 'none', 3, '6%', 'none', 'no');
-    showMobile('thurstan', 'none', 'thurstan-2-img-ipad', 'no');
+    showMobile('thurstan', 'none', 'thurstan-2-img-mobile', 'no');
     setPosition('thurstan', 'mobile', 'thurstan-2-img-mobile', 10, 5.5, 'none', 5.8, 'none', 1.03, 'no');
     setTimeout(function () {
       $('.thurstan-2-text').fadeIn().css('display', 'flex');
@@ -77,11 +77,11 @@ $('.gift-horse.scroll-right').on('click', function() {
       var index = $(this).index() + 2;
       $(this).find('img').css('opacity', 0);
       if ($('.gift-horse-'+index+'-img').length) {
-      setPosition('gift-horse', 'desktop', 'gift-horse-'+index+'-img', 10, 7.5, 1.5, 'none', 'none', 'none', 'none', 'yes');
+      setPosition('gift-horse', 'desktop', 'gift-horse-'+index+'-img', 10, 7.5, 1.6, 'none', 'none', 'none', 'none', 'yes');
       $('.gift-horse-'+index+'-img img').css('opacity', 1);
     }
     else {
-      setPosition('gift-horse', 'desktop', 'gift-horse-1-img', 10, 7.5, 1.5, 'none', 'none', 'none', 'none', 'yes');
+      setPosition('gift-horse', 'desktop', 'gift-horse-1-img', 10, 7.5, 1.6, 'none', 'none', 'none', 'none', 'yes');
       $('.gift-horse-1-img img').css('opacity', 1);
     }
     }
@@ -89,22 +89,44 @@ $('.gift-horse.scroll-right').on('click', function() {
 })
 
 $('.lbw.scroll-right').on('click', function() {
+    if ($('.lbw-visit').hasClass('visible')) {
+      $('.lbw-visit').removeClass('next');
+      $('.lbw-visit').removeClass('visible');
+      $('.lbw-visit').css('opacity', 0);
+      setPosition('lbw', 'desktop', 'lbw-1-img', 10, 7.5, 1.6, 'none', 'none', 'none', 'no');
+    $('.lbw-1-img img').css('opacity', 1);
+console.log('visible');
+    }
+  else if ($('.lbw-visit').hasClass('next')) {
+    console.log('yes');
+    $('.lbw-2-img img, .lbw-1-img img').css('opacity', 0);
+    $('.lbw-visit').css('opacity', 1);
+    $('.lbw-visit').addClass('visible');
+  }
+  else {
+    console.log('this too');
   $('.lbw-1 > *').each( function () {
-    if($(this).find('img').css('opacity') == 1) {
+    if($(this).find('img').hasClass('visible')) {
       var index = $(this).index() + 2;
       $(this).find('img').css('opacity', 0);
       if ($('.lbw-'+index+'-img').length) {
-        setPosition('lbw', 'desktop', 'lbw-'+index+'-img', 10, 7.5, 1.5, 'none', 'none', 'none', 'no');
-
+        setPosition('lbw', 'desktop', 'lbw-'+index+'-img', 10, 7.5, 1.6, 'none', 'none', 'none', 'no');
       $('.lbw-'+index+'-img img').css('opacity', 1);
+        $('.lbw-'+index+'-img img').addClass('visible');
+        if ($('lbw-'+(index + 1)+'-img').has('.lbw-visit')) {
+          console.log('adding next');
+          $('.lbw-visit').addClass('next');
+        }
     }
     else {
-      setPosition('lbw', 'desktop', 'lbw-'+index+'-img', 10, 7.5, 1.5, 'none', 'none', 'none', 'no');
+      setPosition('lbw', 'desktop', 'lbw-'+index+'-img', 10, 7.5, 1.6, 'none', 'none', 'none', 'no');
       $('.lbw-1-img img').css('opacity', 1);
+      $('.lbw-1-img img').addClass('visible');
     }
     }
   })
   $('.lbw-1').scrollTop(0);
+}
 })
 
 $('.genie.scroll-right').on('click', function() {
@@ -115,12 +137,12 @@ $('.genie.scroll-right').on('click', function() {
       $('.genie-'+(index-1)+'-text').css({visibility: 'hidden', display: 'none'});
       if ($('.genie-'+index+'-img').length) {
         $('.genie-'+index+'-text').css({visibility: 'visible', display: 'flex'});
-        setPosition('genie', 'mobile', 'genie-'+index+'-img', 10, 5.5, 'none', 3.4, 'none', 1.11, 'yes');
+        setPosition('genie', 'mobile', 'genie-'+index+'-img', 10, 5.5, 'none', 3.4, 'none', 1.14, 'yes');
       $('.genie-'+index+'-img img').css('opacity', 1);
     }
     else {
       $('.genie-1-text').css({visibility: 'visible', display: 'flex'});
-      setPosition('genie', 'mobile', 'genie-'+index+'-img', 10, 5.5, 'none', 3.4, 'none', 1.11, 'yes');
+      setPosition('genie', 'mobile', 'genie-'+index+'-img', 10, 5.5, 'none', 3.4, 'none', 1.14, 'yes');
       $('.genie-1-img img').css('opacity', 1);
     }
     }
@@ -133,12 +155,12 @@ $('.gift-horse.scroll-left').on('click', function() {
       var index = $(this).index();
       $(this).find('img').css('opacity', 0);
       if ($('.gift-horse-'+index+'-img').length) {
-      setPosition('gift-horse', 'desktop', 'gift-horse-'+index+'-img', 10, 7.5, 1.5, 'none', 'none', 'none', 'none', 'yes');
+      setPosition('gift-horse', 'desktop', 'gift-horse-'+index+'-img', 10, 7.5, 1.6, 'none', 'none', 'none', 'none', 'yes');
       $('.gift-horse-'+index+'-img img').css('opacity', 1);
     }
     else {
       var numImages = $('.gift-horse-1').children().length;
-      setPosition('gift-horse', 'desktop', 'gift-horse-'+numImages+'-img', 10, 7.5, 1.5, 'none', 'none', 'none', 'none', 'yes');
+      setPosition('gift-horse', 'desktop', 'gift-horse-'+numImages+'-img', 10, 7.5, 1.6, 'none', 'none', 'none', 'none', 'yes');
       $('.gift-horse-'+numImages+'-img img').css('opacity', 1);
     }
     }
@@ -151,13 +173,14 @@ $('.lbw.scroll-left').on('click', function() {
       var index = $(this).index();
       $(this).find('img').css('opacity', 0);
       if ($('.lbw-'+index+'-img').length) {
-      setPosition('lbw', 'desktop', 'lbw-'+index+'-img', 10, 7.5, 1.5, 'none', 'none', 'none', 'no');
+      setPosition('lbw', 'desktop', 'lbw-'+index+'-img', 10, 7.5, 1.6, 'none', 'none', 'none', 'no');
       $('.lbw-'+index+'-img img').css('opacity', 1);
     }
     else {
       var numImages = $('.lbw-1').children().length;
-      setPosition('lbw', 'desktop', 'lbw-'+index+'-img', 10, 7.5, 1.5, 'none', 'none', 'none', 'no');
-      $('.lbw-'+numImages+'-img img').css('opacity', 1);
+      setPosition('lbw', 'desktop', 'lbw-'+index+'-img', 10, 7.5, 1.6, 'none', 'none', 'none', 'no');
+      $('.lbw-1-img img').css('opacity', 0);
+      $('.lbw-visit').css('opacity', 1);
     }
     }
   })
@@ -188,19 +211,19 @@ $('.genie.scroll-left').on('click', function() {
 });
 
 $(window).resize(function() {
-  setPosition('thurstan', 'desktop', 'thurstan-1-img', 10, 7.5, 1.5, 'none', 'none', 'none', 'none', 'yes');
+  setPosition('thurstan', 'desktop', 'thurstan-1-img', 10, 7.5, 1.6, 'none', 'none', 'none', 'none', 'yes');
   setPosition('thurstan', 'ipad', 'thurstan-2-img-ipad', 10, 6.5, 'none', 3, '6%', 'none', 'yes');
   setPosition('thurstan', 'mobile', 'thurstan-2-img-mobile', 10, 5.5, 'none', 5.8, 'none', 1.03, 'yes');
-  setPosition('gift-horse', 'desktop', 'gift-horse-1-img', 10, 7.5, 1.5, 'none', 'none', 'none', 'none', 'yes');
-  setPosition('gift-horse', 'desktop', 'gift-horse-2-img', 10, 7.5, 1.5, 'none', 'none', 'none', 'none', 'yes');
-  setPosition('gift-horse', 'desktop', 'gift-horse-3-img', 10, 7.5, 1.5, 'none', 'none', 'none', 'none', 'yes');
-  setPosition('gift-horse', 'desktop', 'gift-horse-4-img', 10, 7.5, 1.5, 'none', 'none', 'none', 'none', 'yes');
-  setPosition('gift-horse', 'desktop', 'gift-horse-5-img', 10, 7.5, 1.5, 'none', 'none', 'none', 'none', 'yes');
+  setPosition('gift-horse', 'desktop', 'gift-horse-1-img', 10, 7.5, 1.6, 'none', 'none', 'none', 'none', 'yes');
+  setPosition('gift-horse', 'desktop', 'gift-horse-2-img', 10, 7.5, 1.6, 'none', 'none', 'none', 'none', 'yes');
+  setPosition('gift-horse', 'desktop', 'gift-horse-3-img', 10, 7.5, 1.6, 'none', 'none', 'none', 'none', 'yes');
+  setPosition('gift-horse', 'desktop', 'gift-horse-4-img', 10, 7.5, 1.6, 'none', 'none', 'none', 'none', 'yes');
+  setPosition('gift-horse', 'desktop', 'gift-horse-5-img', 10, 7.5, 1.6, 'none', 'none', 'none', 'none', 'yes');
   setPosition('lbw', 'desktop', 'lbw-1-img', 10, 7.5, 1.5, 'none', 'none', 'none', 'no');
   setPosition('lbw', 'desktop', 'lbw-2-img', 10, 7.5, 1.5, 'none', 'none', 'none', 'no');
-  setPosition('genie', 'mobile', 'genie-1-img', 10, 5.5, 'none', 3.4, 'none', 1.11, 'yes');
-  setPosition('genie', 'mobile', 'genie-2-img', 10, 5.5, 'none', 3.4, 'none', 1.11, 'yes');
-  setPosition('genie', 'mobile', 'genie-3-img', 10, 5.5, 'none', 3.4, 'none', 1.11, 'yes');
-  setPosition('genie', 'mobile', 'genie-4-img', 10, 5.5, 'none', 3.4, 'none', 1.11, 'yes');
+  setPosition('genie', 'mobile', 'genie-1-img', 10, 5.5, 'none', 3.4, 'none', 1.14, 'yes');
+  setPosition('genie', 'mobile', 'genie-2-img', 10, 5.5, 'none', 3.4, 'none', 1.14, 'yes');
+  setPosition('genie', 'mobile', 'genie-3-img', 10, 5.5, 'none', 3.4, 'none', 1.14, 'yes');
+  setPosition('genie', 'mobile', 'genie-4-img', 10, 5.5, 'none', 3.4, 'none', 1.14, 'yes');
 
 })

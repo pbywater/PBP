@@ -1,3 +1,5 @@
+var isSmallish =  window.matchMedia('only screen and (max-width: 1100px)');
+
 function hideDesktop(section) {
 $('.desktop.'+section+' rect:not(#'+section+'-1-img-desktop-rectangle), .desktop.'+section+' polygon, .desktop.'+section+' path:not(.exception-1, .exception-2, .exception-3)').each(function() {
   var x = getRandomInt(-1200, -1000);
@@ -20,7 +22,7 @@ function showDesktop(section){
     })
   });
   $('.desktop.'+section+' path.exception-1, .desktop.'+section+' path.exception-2, .desktop.'+section+' path.exception-3').removeClass('hiding');
-    setPosition(section, 'desktop', section+'-1-img', 10, 7.5, 1.5, 'none', 'none', 'none', 'no');
+    setPosition(section, 'desktop', section+'-1-img', 10, 7.5, 1.6, 'none', 'none', 'none', 'no');
 }, 500);
 }
 
@@ -59,7 +61,7 @@ function showMobile(section, text, imageGroup, setPos) {
   setTimeout(function () {
     $('#'+imageGroup+'-mobile-mobile-rectangle').fadeIn();
     if (setPos === 'yes') {
-      setPosition(section, 'mobile', imageGroup, 10, 5.5, 'none', 3.4, 'none', 1.11, 'yes');
+      setPosition(section, 'mobile', imageGroup, 10, 5.5, 'none', 3.4, 'none', 1.14, 'yes');
       setTimeout(function () {
         $('.'+imageGroup+' img').css({opacity: '1'});
       }, 2000);
@@ -86,10 +88,30 @@ function setPosition(name, pixelType, imageGroup, divideBy, timesBy, top, margin
   var svg = $('.'+pixelType+'.'+name);
   var svgWidth=svg.width();
   var fixWidth = (svgWidth/divideBy) * timesBy;
+  var isSmallish =  window.matchMedia('only screen and (max-width: 1100px)');
+  var isMobile = window.matchMedia('only screen and (max-width: 760px)');
+  if (isSmallish.matches) {
   $('.'+imageGroup).css({width: fixWidth });
+}
+else if (pixelType === 'mobile' && name === 'genie') {
+  $('.'+imageGroup).css({width: '205px' });
+}
+else if (pixelType === 'desktop') {
+  $('.'+imageGroup).css({width: '640px' });
+}
+else {
+  $('.'+imageGroup).css({width: fixWidth });
+
+}
   if (top !== 'none') {
     var topMargin = (($('.'+name+'.'+pixelType).position().top) - ($('#'+name).position().top)) * top;
+    if (isMobile.matches) {
+var topMargin = '0px';
+$('.'+imageGroup).css({marginTop: '-5%' });
+    }
+    else {
     $('.'+imageGroup).css({top: topMargin });
+  }
   }
   if (marginTop !== 'none') {
     var topMargin = (($('.'+name+'.'+pixelType).position().top) - ($('#'+name).position().top)) * marginTop;
