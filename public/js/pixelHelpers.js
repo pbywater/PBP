@@ -110,7 +110,7 @@ else {
     var topMargin = (($('.'+name+'.'+pixelType).position().top) - ($('#'+name).position().top)) * top;
     if (isMobile.matches) {
 var topMargin = '0px';
-$('.'+imageGroup).css({marginTop: '-5%' });
+$('.'+imageGroup).css({marginTop: '-8%' });
     }
     else {
     $('.'+imageGroup).css({top: topMargin });

@@ -36,14 +36,21 @@ checkIfVisible($('.lbw.work'), showDesktop, hideDesktop, 'lbw');
 $('.thurstan.scroll-right').on('click', function() {
   hideDesktop('thurstan');
   setTimeout(function () {
+        if (!isMobile.matches) {
       $('.thurstan-2').css({display: 'flex'});
+    }
       $('.desktop.thurstan, .thurstan-1').hide();
   }, 1500);
   setTimeout(function () {
+    if (!isMobile.matches) {
     showIpad('thurstan');
     setPosition('thurstan', 'ipad', 'thurstan-2-img-ipad', 10, 6.5, 'none', 3, '6%', 'none', 'no');
     showMobile('thurstan', 'none', 'thurstan-2-img-mobile', 'no');
     setPosition('thurstan', 'mobile', 'thurstan-2-img-mobile', 10, 5.5, 'none', 5.8, 'none', 1.03, 'no');
+  }
+  else {
+    $('thurstan-2').css({display: 'none'});
+  }
     setTimeout(function () {
       $('.thurstan-2-text').fadeIn().css('display', 'flex');
     }, 2000);
@@ -71,6 +78,23 @@ checkIfVisible($('#gift-horse'), showBriefly, displayNone, $('.initial-heading.g
 checkIfVisible($('#genie'), showBriefly, displayNone, $('.initial-heading.genie'));
 checkIfVisible($('#lbw'), showBriefly, displayNone, $('.initial-heading.lbw'));
 
+// $('.gift-horse.scroll-right').on('click', function() {
+//   $('.gift-horse-1 > *').each( function () {
+//     if($(this).find('img').css('opacity') == 1) {
+//       var index = $(this).index() + 2;
+//       $(this).find('img').css('opacity', 0);
+//       if ($('.gift-horse-'+index+'-img').length) {
+//       setPosition('gift-horse', 'desktop', 'gift-horse-'+index+'-img', 10, 7.5, 1.6, 'none', 'none', 'none', 'none', 'yes');
+//       $('.gift-horse-'+index+'-img img').css('opacity', 1);
+//     }
+//     else {
+//       setPosition('gift-horse', 'desktop', 'gift-horse-1-img', 10, 7.5, 1.6, 'none', 'none', 'none', 'none', 'yes');
+//       $('.gift-horse-1-img img').css('opacity', 1);
+//     }
+//     }
+//   })
+// })
+
 $('.gift-horse.scroll-right').on('click', function() {
   $('.gift-horse-1 > *').each( function () {
     if($(this).find('img').css('opacity') == 1) {
@@ -88,18 +112,19 @@ $('.gift-horse.scroll-right').on('click', function() {
   })
 })
 
-$('.gift-horse.scroll-right').on('click', function() {
+$('.gift-horse.scroll-left').on('click', function() {
   $('.gift-horse-1 > *').each( function () {
     if($(this).find('img').css('opacity') == 1) {
-      var index = $(this).index() + 2;
+      var index = $(this).index();
       $(this).find('img').css('opacity', 0);
       if ($('.gift-horse-'+index+'-img').length) {
       setPosition('gift-horse', 'desktop', 'gift-horse-'+index+'-img', 10, 7.5, 1.6, 'none', 'none', 'none', 'none', 'yes');
       $('.gift-horse-'+index+'-img img').css('opacity', 1);
     }
     else {
-      setPosition('gift-horse', 'desktop', 'gift-horse-1-img', 10, 7.5, 1.6, 'none', 'none', 'none', 'none', 'yes');
-      $('.gift-horse-1-img img').css('opacity', 1);
+      var numImages = $('.gift-horse-1').children().length;
+      setPosition('gift-horse', 'desktop', 'gift-horse-'+numImages+'-img', 10, 7.5, 1.6, 'none', 'none', 'none', 'none', 'yes');
+      $('.gift-horse-'+numImages+'-img img').css('opacity', 1);
     }
     }
   })
@@ -144,19 +169,21 @@ $('.lbw.scroll-left').on('click', function() {
   $('.lbw-1').scrollTop(0);
 })
 
-$('.gift-horse.scroll-left').on('click', function() {
-  $('.gift-horse-1 > *').each( function () {
+$('.genie.scroll-right').on('click', function() {
+  $('.genie-1 > *').each( function () {
     if($(this).find('img').css('opacity') == 1) {
-      var index = $(this).index();
+      var index = $(this).index() + 2;
       $(this).find('img').css('opacity', 0);
-      if ($('.gift-horse-'+index+'-img').length) {
-      setPosition('gift-horse', 'desktop', 'gift-horse-'+index+'-img', 10, 7.5, 1.6, 'none', 'none', 'none', 'none', 'yes');
-      $('.gift-horse-'+index+'-img img').css('opacity', 1);
+      $('.genie-'+(index-1)+'-text').css({visibility: 'hidden', display: 'none'});
+      if ($('.genie-'+index+'-img').length) {
+        $('.genie-'+index+'-text').css({visibility: 'visible', display: 'flex'});
+        setPosition('genie', 'mobile', 'genie-'+index+'-img', 10, 5.5, 'none', 3.4, 'none', 1.14, 'yes');
+      $('.genie-'+index+'-img img').css('opacity', 1);
     }
     else {
-      var numImages = $('.gift-horse-1').children().length;
-      setPosition('gift-horse', 'desktop', 'gift-horse-'+numImages+'-img', 10, 7.5, 1.6, 'none', 'none', 'none', 'none', 'yes');
-      $('.gift-horse-'+numImages+'-img img').css('opacity', 1);
+      $('.genie-1-text').css({visibility: 'visible', display: 'flex'});
+      setPosition('genie', 'mobile', 'genie-'+index+'-img', 10, 5.5, 'none', 3.4, 'none', 1.14, 'yes');
+      $('.genie-1-img img').css('opacity', 1);
     }
     }
   })
@@ -170,13 +197,13 @@ $('.genie.scroll-left').on('click', function() {
       $('.genie-'+(index+1)+'-text').css({visibility: 'hidden', display: 'none'});
       if ($('.genie-'+index+'-img').length) {
         $('.genie-'+index+'-text').css({visibility: 'visible', display: 'flex'});
-        setPosition('genie', 'mobile', 'genie-'+index+'-img', 10, 5.5, 'none', 3.4, 'none', 1.11, 'yes');
+        setPosition('genie', 'mobile', 'genie-'+index+'-img', 10, 5.5, 'none', 3.4, 'none', 1.14, 'yes');
       $('.genie-'+index+'-img img').css('opacity', 1);
     }
     else {
       var numImages = $('.genie-1').children().length;
       $('.genie-'+numImages+'-text').css({visibility: 'visible', display: 'flex'});
-      setPosition('genie', 'mobile', 'genie-'+numImages+'-img', 10, 5.5, 'none', 3.4, 'none', 1.11, 'yes');
+      setPosition('genie', 'mobile', 'genie-'+numImages+'-img', 10, 5.5, 'none', 3.4, 'none', 1.14, 'yes');
       $('.genie-'+numImages+'-img img').css('opacity', 1);
     }
     }
@@ -184,6 +211,10 @@ $('.genie.scroll-left').on('click', function() {
 })
 
 });
+
+$('.lbw-1').on('click', function() {
+  window.open('http://lilybertrandwebb.com', '_blank');
+})
 
 $(window).resize(function() {
   setPosition('thurstan', 'desktop', 'thurstan-1-img', 10, 7.5, 1.6, 'none', 'none', 'none', 'none', 'yes');
