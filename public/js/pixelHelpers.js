@@ -108,9 +108,14 @@ else {
 }
   if (top !== 'none') {
     var topMargin = (($('.'+name+'.'+pixelType).position().top) - ($('#'+name).position().top)) * top;
-    if (isMobile.matches) {
+    if (isMobile.matches && name !== 'lbw') {
 var topMargin = '0px';
 $('.'+imageGroup).css({marginTop: '-8%' });
+    }
+    if (isMobile.matches && name === 'lbw') {
+      console.log('yes');
+      $('.'+imageGroup).css({top: '0' });
+var topMargin = '0px';
     }
     else {
     $('.'+imageGroup).css({top: topMargin });
