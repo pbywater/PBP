@@ -6,10 +6,11 @@ manageTopNav();
 var isMobile = window.matchMedia('only screen and (max-width: 760px)');
 
   if (isMobile.matches) {
+pixelAnimation('.pixels-mobile .mobile');
 mobileColours();
-pixelAnimation('.pixels-mobile.mobile');
   } else {
 pixelAnimation('.initial');
+desktopColours();
   }
 
 hideDesktop('thurstan');
@@ -123,15 +124,20 @@ $('.gift-horse.scroll-right').on('click', function() {
 $('.gift-horse.scroll-left').on('click', function() {
   $('.gift-horse-1 > *').each( function () {
     if($(this).find('img').css('opacity') == 1) {
-      var index = $(this).index();
       $(this).find('img').css('opacity', 0);
+      $(this).css('position', 'absolute');
+      var index = $(this).index();
       if ($('.gift-horse-'+index+'-img').length) {
       setPosition('gift-horse', 'desktop', 'gift-horse-'+index+'-img', 10, 7.5, 1.6, 'none', 'none', 'none', 'none', 'yes');
-      $('.gift-horse-'+index+'-img img').css('opacity', 1);
+      $('.gift-horse-'+index+'-img').css('position', 'relative');
+      setTimeout(function () {
+        $('.gift-horse-'+index+'-img img').css('opacity', 1);
+      }, 10);
     }
     else {
       var numImages = $('.gift-horse-1').children().length;
       setPosition('gift-horse', 'desktop', 'gift-horse-'+numImages+'-img', 10, 7.5, 1.6, 'none', 'none', 'none', 'none', 'yes');
+      $('.gift-horse-'+numImages+'-img').css('position', 'relative');
       $('.gift-horse-'+numImages+'-img img').css('opacity', 1);
     }
     }

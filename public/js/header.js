@@ -31,7 +31,7 @@ jQuery(element).on('mouseover', function() {
 }
 
 function mobileColours() {
-  jQuery('.pixels-mobile.mobile').on('click', function() {
+  jQuery('.pixels-mobile .mobile').on('click', function() {
     var randomNum = getRandomInt(0, 3);
     var colours = ['#c4e6ef', '#cdb6e7', '#9bfeca', '#ff8f93'];
     var randomColour = colours[randomNum];
