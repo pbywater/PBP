@@ -1,6 +1,6 @@
 jQuery(document).ready(function() {
 scrollAnimation();
-iphoneFix();
+// iphoneFix();
 manageTopNav();
 
 var isMobile = window.matchMedia('only screen and (max-width: 760px)');
