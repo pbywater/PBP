@@ -7,7 +7,7 @@ var isMobile = window.matchMedia('only screen and (max-width: 760px)');
 
   if (isMobile.matches) {
 mobileColours();
-pixelAnimation('.mobile');
+pixelAnimation('.pixels-mobile.mobile');
   } else {
 pixelAnimation('.initial');
   }
