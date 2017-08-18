@@ -137,12 +137,12 @@ $('.'+imageGroup).css({marginTop: '0%' });
     $('.'+imageGroup).css({marginLeft: marginLeft });
   }
   if (leftMarginByPosition !== 'none') {
-    if (name === 'genie' && imageGroup !== 'genie-1-img-mobile' && isMobile.matches) {
-      var leftMargin = ($('.'+name+'.'+pixelType).offset().left) * leftMarginByPosition * 3.5;
-    }
-  else {
+  //   if (name === 'genie' && imageGroup !== 'genie-1-img-mobile' && isMobile.matches) {
+  //     var leftMargin = ($('.'+name+'.'+pixelType).offset().left) * leftMarginByPosition * 3.5;
+  //   }
+  // else {
     var leftMargin = ($('.'+name+'.'+pixelType).offset().left) * leftMarginByPosition;
-  }
+  // }
     $('.'+imageGroup).css({marginLeft: leftMargin });
   }
   setTimeout(function () {
