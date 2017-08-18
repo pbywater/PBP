@@ -110,7 +110,7 @@ else {
 
 }
   if (top !== 'none') {
-    var topMargin = (($('.'+name+'.'+pixelType).position().top) - ($('#'+name).position().top)) * top;
+    var topMargin = (($('.'+name+'.'+pixelType).offset().top) - ($('#'+name).offset().top)) * top;
     if (isMobile.matches && name !== 'lbw') {
 var topMargin = '0px';
 $('.'+imageGroup).css({marginTop: '-8%' });
@@ -129,7 +129,7 @@ var topMargin = '0px';
 $('.'+imageGroup).css({marginTop: '0%' });
     }
     else {
-    var topMargin = (($('.'+name+'.'+pixelType).position().top) - ($('#'+name).position().top)) * marginTop;
+    var topMargin = (($('.'+name+'.'+pixelType).offset().top) - ($('#'+name).offset().top)) * marginTop;
     $('.'+imageGroup).css({marginTop: topMargin });
   }
   }
@@ -138,10 +138,10 @@ $('.'+imageGroup).css({marginTop: '0%' });
   }
   if (leftMarginByPosition !== 'none') {
     if (name === 'genie' && imageGroup !== 'genie-1-img-mobile' && isMobile.matches) {
-      var leftMargin = ($('.'+name+'.'+pixelType).position().left) * leftMarginByPosition * 3.5;
+      var leftMargin = ($('.'+name+'.'+pixelType).offset().left) * leftMarginByPosition * 3.5;
     }
   else {
-    var leftMargin = ($('.'+name+'.'+pixelType).position().left) * leftMarginByPosition;
+    var leftMargin = ($('.'+name+'.'+pixelType).offset().left) * leftMarginByPosition;
   }
     $('.'+imageGroup).css({marginLeft: leftMargin });
   }
