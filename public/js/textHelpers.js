@@ -1,10 +1,7 @@
 function showBriefly(elementToShow) {
-  elementToShow.fadeIn();
-  setTimeout(function () {
-    elementToShow.fadeOut();
-  }, 1000);
+  // elementToShow.fadeIn();
 }
 
 function displayNone(elementToHide) {
-  elementToHide.css('display', 'none');
+  // elementToHide.css('display', 'none');
 }

@@ -4,6 +4,10 @@ function getRandomInt(min, max) {
 
 function checkIfVisible(el, funcIfTrue, funcIfFalse, section, text, imageGroup, setPosition) {
 $(window).scroll(function() {
+  // if ($('footer').is(':visible')) {
+  //   $('')
+  // }
+    if (!el.hasClass('complete')) {
     var top_of_element = el.offset().top;
     var bottom_of_element = el.offset().top + el.outerHeight();
     var bottom_of_screen = $(window).scrollTop() + $(window).height();
@@ -14,11 +18,12 @@ $(window).scroll(function() {
       funcIfTrue(section, text, imageGroup, setPosition);
     }
     else if (text !== 'none' && setPosition === 'no') {
-      funcIfTrue(section, text, imageGroup)
+      funcIfTrue(section, text, imageGroup);
     }
     else {
       funcIfTrue(section, imageGroup);
     }
+      el.addClass('complete');
     }
     else {
       if (text !== 'none') {
@@ -28,6 +33,7 @@ $(window).scroll(function() {
       funcIfFalse(section, imageGroup);
     }
   }
+}
 });
 }
 

@@ -24,6 +24,7 @@ function showDesktop(section){
   $('.desktop.'+section+' path.exception-1, .desktop.'+section+' path.exception-2, .desktop.'+section+' path.exception-3').removeClass('hiding');
     setPosition(section, 'desktop', section+'-1-img', 10, 7.5, 1.6, 'none', 'none', 'none', 'no');
 }, 500);
+// $('.initial-heading.'+section).addClass('minimise');
 }
 
 function showIpad(section) {
@@ -48,18 +49,18 @@ function hideIpad(section, imageGroup) {
 }
 
 function showMobile(section, text, imageGroup, setPos) {
-  $('.mobile.'+section+' rect, .mobile.'+section+' polygon, .mobile.'+section+' path').each(function() {
+  $('.'+section+'.mobile rect, .'+section+'.mobile polygon, .'+section+'.mobile path').each(function() {
     $(this).css({
       visibility: 'visible',
       transform: 'translate(0px,0px)',
     })
   });
-  $('#'+imageGroup+'-mobile-mobile-rectangle').css({display: 'none'});
+  $('#'+imageGroup+'-mobile-rectangle').css({display: 'none'});
   if (text) {
     $('.'+section+'-1-text').css({visibility: 'visible'});
   }
   setTimeout(function () {
-    $('#'+imageGroup+'-mobile-mobile-rectangle').fadeIn();
+    $('#'+imageGroup+'-mobile-rectangle').fadeIn();
     if (setPos === 'yes') {
       setPosition(section, 'mobile', imageGroup, 10, 5.5, 'none', 3.4, 'none', 1.14, 'yes');
       setTimeout(function () {
@@ -67,6 +68,7 @@ function showMobile(section, text, imageGroup, setPos) {
       }, 2000);
   }
 }, 2000);
+// $('.initial-heading.'+section).addClass('minimise');
 }
 
 function hideMobile(section, text, imageGroup) {
@@ -77,12 +79,13 @@ function hideMobile(section, text, imageGroup) {
         transform: 'translate(' + x + 'px,' + y + 'px)',
       })
   })
-  $('#'+imageGroup+'-mobile-mobile-rectangle').fadeOut();
+  $('#'+imageGroup+'-mobile-rectangle').fadeOut();
   $('.'+imageGroup+' img').css({opacity: '0'});
   if (text !== 'none') {
     $('.'+section+'-1-text').css({visibility: 'hidden'});
   }
 }
+
 
 function setPosition(name, pixelType, imageGroup, divideBy, timesBy, top, marginTop, marginLeft, leftMarginByPosition, resize) {
   var svg = $('.'+pixelType+'.'+name);
@@ -91,7 +94,7 @@ function setPosition(name, pixelType, imageGroup, divideBy, timesBy, top, margin
   var isSmallish =  window.matchMedia('only screen and (max-width: 1100px)');
   var isMobile = window.matchMedia('only screen and (max-width: 760px)');
   if (pixelType === 'mobile' && name === 'genie' && isMobile.matches) {
-        $('.'+imageGroup).css({top: '48%' });
+        $('.'+imageGroup).css({top: '51%' });
   }
   if (isSmallish.matches) {
   $('.'+imageGroup).css({width: fixWidth });
@@ -112,8 +115,7 @@ else {
 var topMargin = '0px';
 $('.'+imageGroup).css({marginTop: '-8%' });
     }
-    if (isMobile.matches && name === 'lbw') {
-      console.log('yes');
+    else if (isMobile.matches && name === 'lbw') {
       $('.'+imageGroup).css({top: '0' });
 var topMargin = '0px';
     }
@@ -135,11 +137,17 @@ $('.'+imageGroup).css({marginTop: '0%' });
     $('.'+imageGroup).css({marginLeft: marginLeft });
   }
   if (leftMarginByPosition !== 'none') {
+    if (name === 'genie' && imageGroup !== 'genie-1-img-mobile' && isMobile.matches) {
+      var leftMargin = ($('.'+name+'.'+pixelType).position().left) * leftMarginByPosition * 3.5;
+    }
+  else {
     var leftMargin = ($('.'+name+'.'+pixelType).position().left) * leftMarginByPosition;
+  }
     $('.'+imageGroup).css({marginLeft: leftMargin });
   }
   setTimeout(function () {
     $('.'+name+'.border').css({position: 'relative'});
+    $('.initial-heading.'+name).css({opacity: '1'});
     if (resize === 'no') {
     $('#'+imageGroup+'-'+pixelType+'-rectangle').fadeIn();
     $('.'+imageGroup+' img').css({opacity: '1'});

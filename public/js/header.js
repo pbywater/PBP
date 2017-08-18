@@ -51,5 +51,6 @@ function desktopColours() {
       fill: '#ff8f93'
     });
     jQuery(this).addClass('clicked').removeClass('initial').off('mouseover');
+
   });
 }
