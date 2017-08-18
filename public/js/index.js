@@ -101,14 +101,19 @@ $('.thurstan.scroll-left').on('click', function() {
 $('.gift-horse.scroll-right').on('click', function() {
   $('.gift-horse-1 > *').each( function () {
     if($(this).find('img').css('opacity') == 1) {
-      var index = $(this).index() + 2;
       $(this).find('img').css('opacity', 0);
+      $(this).css('position', 'absolute');
+      var index = $(this).index() + 2;
       if ($('.gift-horse-'+index+'-img').length) {
       setPosition('gift-horse', 'desktop', 'gift-horse-'+index+'-img', 10, 7.5, 1.6, 'none', 'none', 'none', 'none', 'yes');
-      $('.gift-horse-'+index+'-img img').css('opacity', 1);
+              $('.gift-horse-'+index+'-img').css('position', 'relative');
+              setTimeout(function () {
+                $('.gift-horse-'+index+'-img img').css('opacity', 1);
+              }, 10);
     }
     else {
       setPosition('gift-horse', 'desktop', 'gift-horse-1-img', 10, 7.5, 1.6, 'none', 'none', 'none', 'none', 'yes');
+      $('.gift-horse-1-img').css('position', 'relative');
       $('.gift-horse-1-img img').css('opacity', 1);
     }
     }

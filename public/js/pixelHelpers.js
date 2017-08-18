@@ -113,11 +113,15 @@ else {
     var topMargin = (($('.'+name+'.'+pixelType).offset().top) - ($('#'+name).offset().top)) * top;
     if (isMobile.matches && name !== 'lbw') {
 var topMargin = '0px';
-$('.'+imageGroup).css({marginTop: '-8%' });
+$('.'+imageGroup).css({marginTop: '-18%' });
     }
     else if (isMobile.matches && name === 'lbw') {
       $('.'+imageGroup).css({top: '0' });
 var topMargin = '0px';
+    }
+    else if (pixelType === 'desktop' && name !== 'lbw') {
+      topMargin = topMargin * 1.2;
+      $('.'+imageGroup).css({bottom: topMargin });
     }
     else {
     $('.'+imageGroup).css({top: topMargin });
