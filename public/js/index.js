@@ -2,14 +2,14 @@ jQuery(document).ready(function() {
 scrollAnimation();
 iphoneFix();
 manageTopNav();
-pixelAnimation();
 
 var isMobile = window.matchMedia('only screen and (max-width: 760px)');
 
   if (isMobile.matches) {
 mobileColours();
+pixelAnimation('.mobile');
   } else {
-desktopColours();
+pixelAnimation('.initial');
   }
 
 hideDesktop('thurstan');

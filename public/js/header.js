@@ -1,6 +1,6 @@
 
-function pixelAnimation() {
-jQuery('.initial').on('mouseover', function() {
+function pixelAnimation(element) {
+jQuery(element).on('mouseover', function() {
   var x = getRandomInt(-150, 150);
   var y = getRandomInt(-200, 200);
   var randomNum = getRandomInt(0, 3);
@@ -31,7 +31,7 @@ jQuery('.initial').on('mouseover', function() {
 }
 
 function mobileColours() {
-  jQuery('.initial').on('click', function() {
+  jQuery('.mobile').on('click', function() {
     var randomNum = getRandomInt(0, 3);
     var colours = ['#c4e6ef', '#cdb6e7', '#9bfeca', '#ff8f93'];
     var randomColour = colours[randomNum];
